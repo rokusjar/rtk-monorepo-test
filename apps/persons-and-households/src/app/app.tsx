@@ -5,7 +5,7 @@ import { CalculatorOsvcLib } from '@rtk-monorepo-test/calculator-osvc-lib';
 export function App() {
   return (
     <div>
-      <h1>Kalkulačka OSVČ - samostatná obrazovka</h1>
+      <h1>Osoby a domácnosti - samostatná obrazovka</h1>
       <CalculatorOsvcLib />
     </div>
   );

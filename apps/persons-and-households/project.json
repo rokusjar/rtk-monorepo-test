@@ -1,0 +1,90 @@
+{
+  "name": "persons-and-households",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/persons-and-households/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/persons-and-households",
+        "index": "apps/persons-and-households/src/index.html",
+        "baseHref": "/",
+        "main": "apps/persons-and-households/src/main.tsx",
+        "tsConfig": "apps/persons-and-households/tsconfig.app.json",
+        "assets": [
+          "apps/persons-and-households/src/favicon.ico",
+          "apps/persons-and-households/src/assets"
+        ],
+        "styles": ["apps/persons-and-households/src/styles.css"],
+        "scripts": [],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/persons-and-households/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/persons-and-households/src/environments/environment.ts",
+              "with": "apps/persons-and-households/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "persons-and-households:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "persons-and-households:build:development"
+        },
+        "production": {
+          "buildTarget": "persons-and-households:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/persons-and-households/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/persons-and-households/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
