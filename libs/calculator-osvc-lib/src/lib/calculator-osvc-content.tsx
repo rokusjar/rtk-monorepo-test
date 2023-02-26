@@ -17,7 +17,7 @@ export default function CalculatorOsvcContent() {
     return (
       <>
         {data.results.map((species: PokemonSpecies) => (
-          <p>{species.name}</p>
+          <p key={species.name}>{species.name}</p>
         ))}
       </>
     );

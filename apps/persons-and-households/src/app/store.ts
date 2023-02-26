@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { calculatorOsvcLibApi } from './calculator-osvc-lib-api';
+import { calculatorOsvcLibApi } from 'libs/calculator-osvc-lib/src/lib/calculator-osvc-lib-api';
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +13,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(calculatorOsvcLibApi.middleware),
   devTools: {
-    name: 'OSVC Lib',
+    name: 'Persons and Households App',
   },
 });
 

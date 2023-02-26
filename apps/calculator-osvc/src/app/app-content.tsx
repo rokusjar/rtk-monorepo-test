@@ -1,3 +1,4 @@
+import { useGetPokemonSpeciesQuery } from 'libs/calculator-osvc-lib/src/lib/calculator-osvc-lib-api';
 import {
   PokemonHabitat,
   useGetPokemonHabitatQuery,
@@ -5,6 +6,14 @@ import {
 
 export default function AppContent() {
   const { data, error, isLoading } = useGetPokemonHabitatQuery();
+
+  // Pokud potřebuju data z lib API tak si na ně mohu sáhnout i takto, protože mám jen jeden store
+  const {
+    data: species,
+    error: speciesError,
+    isLoading: speciesIsLoading,
+  } = useGetPokemonSpeciesQuery();
+  console.log(species);
 
   if (isLoading) {
     return <p>Načítám data...</p>;
@@ -14,7 +23,7 @@ export default function AppContent() {
     return (
       <>
         {data.results.map((habitat: PokemonHabitat) => (
-          <p>{habitat.name}</p>
+          <p key={habitat.name}>{habitat.name}</p>
         ))}
       </>
     );
